@@ -7,7 +7,7 @@ import { collect } from './receiver.mjs';
 import { ReceiptStore } from './store.mjs';
 import { createGateway } from './gateway.mjs';
 
-export async function createService({ dataDir, scenario = 'standard' } = {}) {
+export async function createService({ dataDir, scenario = 'standard', port = 0 } = {}) {
   const store = new ReceiptStore(dataDir);
   await store.open();
   const gateway = await createGateway(scenario);
@@ -47,13 +47,13 @@ export async function createService({ dataDir, scenario = 'standard' } = {}) {
       response.end(JSON.stringify({ error: error.message }));
     }
   });
-  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  await new Promise(resolve => server.listen(port, '127.0.0.1', resolve));
   return { server, store, gateway, baseUrl: `http://127.0.0.1:${server.address().port}`,
     close: async () => { await new Promise(resolve => server.close(resolve)); await gateway.close(); } };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const service = await createService({ dataDir: process.env.DATA_DIR || './var', scenario: process.env.SCENARIO || 'standard' });
+  const service = await createService({ dataDir: process.env.DATA_DIR || './var', scenario: process.env.SCENARIO || 'standard', port: Number(process.env.PORT || 0) });
   console.log(JSON.stringify({ message: '接收服务已启动', url: service.baseUrl, source: service.gateway.descriptor.product }));
   const stop = async () => { await service.close(); process.exit(0); };
   process.on('SIGTERM', stop);
