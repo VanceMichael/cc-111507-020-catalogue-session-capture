@@ -24,3 +24,7 @@ docker run --rm --network none catalogue-session-capture:local npm run demo
 ```
 
 镜像构建准备阶段完成依赖安装，运行不需要公网服务。接口约定见 `docs/接入约定.md`，来源格式范围见 `docs/来源格式.md`。`src/source-metadata.mjs` 只识别文件元信息，不代表已提取结构化记录。文件收件与完整业务覆盖是不同状态。
+
+## 结构化方式检查
+
+结构化方式当前尚未开放，因此日常测试跳过相应检查。启用后可运行 `STRUCTURED=1 npm test` 检查真实收件、来源语义及持久查询；当前执行此检查会在501处失败，不代表原始资料接收故障。该检查的领域字段约定见接入文档，不以测试代替支持范围说明。
