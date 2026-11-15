@@ -11,7 +11,6 @@ export async function createService({ dataDir, scenario = 'standard' } = {}) {
   const store = new ReceiptStore(dataDir);
   await store.open();
   const gateway = await createGateway(scenario);
-  let sourceRequests = [];
   const server = http.createServer(async (request, response) => {
     try {
       const url = new URL(request.url, 'http://127.0.0.1');
