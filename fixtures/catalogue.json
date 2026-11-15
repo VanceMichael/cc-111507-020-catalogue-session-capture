@@ -1,0 +1,23 @@
+{
+  "session": "s1",
+  "resultSet": "books",
+  "generation": 1,
+  "records": [
+    {
+      "id": "b1",
+      "syntax": "mods",
+      "body": "<mods xmlns=\"http://www.loc.gov/mods/v3\"><titleInfo><title>港口史</title></titleInfo><identifier type=\"local\">b1</identifier></mods>"
+    },
+    {
+      "diagnostic": {
+        "condition": 238,
+        "message": "该条目不支持所选呈现格式"
+      }
+    },
+    {
+      "id": "b3",
+      "syntax": "mods",
+      "body": "<mods xmlns=\"http://www.loc.gov/mods/v3\"><titleInfo><title>航路记</title></titleInfo><identifier type=\"local\">b3</identifier></mods>"
+    }
+  ]
+}

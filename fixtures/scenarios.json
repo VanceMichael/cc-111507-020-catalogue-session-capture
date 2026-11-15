@@ -1,0 +1,42 @@
+[
+  {
+    "id": "standard",
+    "entry": "catalogue.json",
+    "version": "source-v1",
+    "resources": [
+      "catalogue.json"
+    ],
+    "behavior": "standard",
+    "description": "合作馆联合目录：standard"
+  },
+  {
+    "id": "replaced",
+    "entry": "catalogue.json",
+    "version": "source-v1",
+    "resources": [
+      "catalogue.json"
+    ],
+    "behavior": "replaced",
+    "description": "合作馆联合目录：replaced"
+  },
+  {
+    "id": "expired",
+    "entry": "catalogue.json",
+    "version": "source-v1",
+    "resources": [
+      "catalogue.json"
+    ],
+    "behavior": "expired",
+    "description": "合作馆联合目录：expired"
+  },
+  {
+    "id": "concurrent",
+    "entry": "catalogue.json",
+    "version": "source-v1",
+    "resources": [
+      "catalogue.json"
+    ],
+    "behavior": "concurrent",
+    "description": "合作馆联合目录：concurrent"
+  }
+]
