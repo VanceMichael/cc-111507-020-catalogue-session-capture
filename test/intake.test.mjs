@@ -28,6 +28,9 @@ for (const scenario of scenarios) {
       assert.ok([200,206].includes(range.status));
       assert.equal((await fetch(`${service.gateway.baseUrl}/files/not-provided.bin`)).status, 404);
       assert.equal((await fetch(`${service.baseUrl}/v1/intakes`, { method: 'POST', body: '{' })).status, 400);
+      assert.equal((await fetch(`${service.baseUrl}/v1/intakes`, { method: 'POST', body: 'null' })).status, 400);
+      assert.equal((await fetch(`${service.baseUrl}/v1/intakes`, { method: 'POST', body: '[]' })).status, 400);
+      assert.equal((await fetch(`${service.baseUrl}/v1/intakes`, { method: 'POST', body: JSON.stringify({ mode: 'other' }) })).status, 400);
       assert.ok(service.gateway.trace.some(item => item.path.startsWith('/files/')));
     } finally { await service.close(); await rm(dataDir, { recursive: true, force: true }); }
   });

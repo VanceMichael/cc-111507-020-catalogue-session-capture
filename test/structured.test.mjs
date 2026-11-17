@@ -4,7 +4,7 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createService } from '../src/server.mjs';
-test('结构化收件：来源记录、可查询性及覆盖身份', { skip: process.env.STRUCTURED !== '1' ? '结构化方式尚未开放；启用 STRUCTURED=1 检查' : false }, async () => {
+test('结构化收件：来源记录、可查询性及覆盖身份', async () => {
   const dataDir=await mkdtemp(join(tmpdir(),'structured-check-'));
   const service=await createService({dataDir});
   try {

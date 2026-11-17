@@ -1,6 +1,9 @@
 import { receiveBytes } from './http-client.mjs';
 import { inspect } from './source-metadata.mjs';
+import { collectStructured } from './structured.mjs';
+
 export async function collect({ input, descriptor, sourceBase, store }) {
+  if (input.mode === 'structured') return collectStructured({ input, descriptor, sourceBase, store });
   if (input.mode !== 'raw') return { httpStatus: 501, error: '当前仅开放原始资料接收' };
   const source = await receiveBytes(`${sourceBase}/files/${encodeURIComponent(descriptor.entry)}`);
   const blob = await store.blob(source.bytes);

@@ -32,7 +32,7 @@ export async function createService({ dataDir, scenario = 'standard', port = 0 }
           pieces.push(piece);
         }
         const input = JSON.parse(Buffer.concat(pieces).toString());
-        if (!['raw', 'structured'].includes(input.mode)) {
+        if (!input || typeof input !== 'object' || Array.isArray(input) || !['raw', 'structured'].includes(input.mode)) {
           response.statusCode = 400;
           return response.end(JSON.stringify({ error: '接收方式无效' }));
         }
