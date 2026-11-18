@@ -9,5 +9,7 @@ try {
   console.log('来源资料', JSON.stringify(source, null, 2));
   const response = await fetch(`${service.baseUrl}/v1/intakes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ mode: 'raw' }) });
   console.log('实际收件', JSON.stringify(await response.json(), null, 2));
+  const structured = await fetch(`${service.baseUrl}/v1/intakes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ mode: 'structured', query: '港口 OR 航路', preferredSyntax: 'mods' }) });
+  console.log('结构化收件', JSON.stringify(await structured.json(), null, 2));
   console.log('收件目录', JSON.stringify(await (await fetch(`${service.baseUrl}/v1/receipts`)).json(), null, 2));
 } finally { await service.close(); await rm(dataDir, { recursive: true, force: true }); }
